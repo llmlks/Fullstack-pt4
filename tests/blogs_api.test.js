@@ -124,9 +124,7 @@ describe('When there are some blogs saved in DB initially', async () => {
             expect(urls).not.toContain(newBlog.url)
             expect(blogsAfter.length).toBe(blogsBefore.length)
             expect(response.body).toEqual({
-                error: `Title and url must be defined.
-                    \n Title: undefined
-                    \n URL: ${newBlog.url}`
+                error: `Title must be defined. Title: ${newBlog.title}`
             })
         })
 
@@ -150,9 +148,7 @@ describe('When there are some blogs saved in DB initially', async () => {
             expect(blogsAfter.length).toBe(blogsBefore.length)
             expect(titles).not.toContain(newBlog.title)
             expect(response.body).toEqual({
-                error: `Title and url must be defined.
-                    \n Title: ${newBlog.title}
-                    \n URL: undefined`
+                error: `URL must be defined. URL: ${newBlog.url}`
             })
         })
     })

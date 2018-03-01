@@ -1,0 +1,35 @@
+.error {
+    color: red;
+    border-style: solid;
+    border-color: red;
+    padding: 10px;
+    font-size: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    width: 50%;
+}
+
+.success {
+    color: rgb(71, 197, 71);
+    border-style: solid;
+    border-color: rgb(71, 197, 71);
+    padding: 10px;
+    font-size: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    width: 50%;
+}
+
+.blog {
+    border-style: solid;
+    border-color: black;
+    padding: 5px;
+    margin: 5px;
+}
+
+.deleteButton {
+    color: white;
+    background-color: rgb(255, 52, 52);
+    border-style: solid;
+    border-color: black;
+}

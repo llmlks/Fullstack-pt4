@@ -26,11 +26,15 @@ blogsRouter.post('/', async (request, response) => {
             return response.status(401).send({ error: 'Token missing or invalid' })
         }
 
-        if (body.title === undefined || body.url === undefined) {
+        if (body.title === undefined || body.title === null || body.title.length === 0) {
             return response.status(400).send({
-                error: `Title and url must be defined.
-                    \n Title: ${body.title}
-                    \n URL: ${body.url}`
+                error: `Title must be defined. Title: ${body.title}`
+            })
+        }
+
+        if (body.url === undefined || body.url === null || body.url.length === 0) {
+            return response.status(400).send({
+                error: `URL must be defined. URL: ${body.url}`
             })
         }
 
@@ -73,10 +77,12 @@ blogsRouter.delete('/:id', async (request, response) => {
             return response.status(400).send({ error: `Malformatted id: ${request.params.id}` })
         }
 
-        const decodedToken = jwt.verify(request.token, process.env.SECRET)
+        if (toBeRemoved.user !== undefined && toBeRemoved.user !== null) {
+            const decodedToken = jwt.verify(request.token, process.env.SECRET)
 
-        if (decodedToken.id.toString() !== toBeRemoved.user.toString()) {
-            return response.status(401).send({ error: 'Operation not authorised' })
+            if (decodedToken.id.toString() !== toBeRemoved.user.toString()) {
+                return response.status(401).send({ error: 'Operation not authorised' })
+            }
         }
 
         await toBeRemoved.remove()
